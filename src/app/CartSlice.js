@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-const initialState = {
+const CartInitialState = {
   cartState: false,
   cartItems: localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
@@ -11,8 +11,8 @@ const initialState = {
 };
 
 const CartSlice = createSlice({
-  initialState,
   name: "cart",
+  initialState: CartInitialState,
   reducers: {
     setOpenCart: (state, action) => {
       state.cartState = action.payload.cartState;
@@ -113,10 +113,17 @@ export const {
   setGetTotals
 } = CartSlice.actions;
 
-export const selectCartState = (state) => state.cart.cartState;
-export const selectCartItems = (state) => state.cart.cartItems;
+// export const selectCartState = (state) => state.cart.cartState;
+export const selectCartState = (state) => state.cart && state.cart.cartState;
 
-export const selectTotalAmount = (state) => state.cart.cartTotalAmount;
-export const selectTotalQTY = (state) => state.cart.cartTotalQantity;
+// export const selectCartItems = (state) => state.cart.cartItems;
+export const selectCartItems = (state) => state.cart && state.cart.cartItems;
+
+// export const selectTotalAmount = (state) => state.cart.cartTotalAmount;
+export const selectTotalAmount = (state) => state.cart && state.cart.cartTotalAmount;
+
+// export const selectTotalQTY = (state) => state.cart.cartTotalQantity;
+export const selectTotalQTY = (state) => state.cart && state.cart.cartTotalQantity;
+
 
 export default CartSlice.reducer;

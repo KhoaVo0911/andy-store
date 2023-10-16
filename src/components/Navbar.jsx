@@ -11,7 +11,7 @@ import { setLoading } from './features/login/loginSlice.jsx';
 const Navbar = () => {
     const dispatch = useDispatch();
 
-    const { isLoading } = useSelector((state) => state.login);
+    const { isLoading } = useSelector((state) => state.login ?? {});
     const [isLogin, setIsLogin] = useState();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
